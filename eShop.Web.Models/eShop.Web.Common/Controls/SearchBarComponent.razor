@@ -1,0 +1,20 @@
+﻿<form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2">
+        <label for="filter"> Search:&nbsp;</label>
+        <input class="form-control" id="filter" type="text" @bind-value="filter" />
+    </div>
+    <button class="btn btn-primary mb-2" @onclick="HandleSearch" type="button">Search</button>
+</form>
+
+@code {
+    private string filter;
+
+    [Parameter]
+    public EventCallback<string> OnSearch { get; set; }
+
+    private void HandleSearch()
+    {
+        OnSearch.InvokeAsync(filter);
+    }
+
+}
